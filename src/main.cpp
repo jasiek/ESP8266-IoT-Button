@@ -1,7 +1,11 @@
 #include <Arduino.h>
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h>
 
 void setup() {
-  // put your setup code here, to run once:
+  WiFiManager wifiManager;
+  wifiManager.autoConnect("IoT Button");
 }
 
 void loop() {

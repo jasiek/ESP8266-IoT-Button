@@ -31,4 +31,7 @@
 *.out
 *.app
 
-.pioenvs
+# PlatformIO
+.pio*
+.gcc-flags.json
+.clang_complete

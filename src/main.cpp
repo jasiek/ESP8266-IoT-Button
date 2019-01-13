@@ -13,7 +13,7 @@ char mqtt_port[5] = "1883";
 char mqtt_username[40];
 char mqtt_password[40];
 char mqtt_ssl[3] = "no";
-MQTTClient mqtt(128);
+MQTTClient mqtt(1024);
 
 // Find out if we've been intentionally reset, or is this a regular power on.
 bool triggered() {
@@ -63,12 +63,14 @@ void notify() {
     if (mqtt.publish("devices/button", "click")) {
       Serial.println("published");
     }
+    mqtt.disconnect();
+    mqtt.loop();
   }
 }
 
 void setup() {
   pinMode(D0, INPUT_PULLUP);
-  if (digitalRead(D0)) {
+  if (digitalRead(D0) == 1) {
     wifiManager.resetSettings();
     delay(1000);
   }

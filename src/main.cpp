@@ -63,6 +63,7 @@ void notify() {
     if (mqtt.publish("devices/button", "click")) {
       Serial.println("published");
     }
+    delay(5000);
     mqtt.disconnect();
     mqtt.loop();
   }

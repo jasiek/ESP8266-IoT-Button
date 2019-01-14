@@ -69,13 +69,17 @@ void notify() {
   }
 }
 
-void setup() {
-  pinMode(D0, INPUT_PULLUP);
-  if (digitalRead(D0) == 1) {
+void maybe_reset_settings() {
+  pinMode(D4, INPUT_PULLUP);
+  if (digitalRead(D0) == 0) {
     wifiManager.resetSettings();
     delay(1000);
   }
+}
 
+void setup() {
+  maybe_reset_settings();
+  
   Serial.begin(115200);
   Serial.println("ESP8266-IoT-Button starting up...");
   // Have we been powered up, or this is an intentional reset?
